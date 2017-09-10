@@ -1,2 +1,10 @@
-# diablo-build-aggregator
-I want to aggregate all diablo builds to see what is popular
+# starter-app
+## to start server
+npm i -g
+example:
+node server.js
+
+- or -
+
+node server.js 192.168.0.1
+

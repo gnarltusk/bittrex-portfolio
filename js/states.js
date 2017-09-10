@@ -1,8 +1,8 @@
 define([], function() {
   var states = {
-    'trump-slapper': {
+    'home': {
       path: 'home',
-      controller: 'TrumpSlapperController as TrumpSlapperCtrl'
+      controller: 'HomeController as HomeCtrl'
     }
   };
   return states;
