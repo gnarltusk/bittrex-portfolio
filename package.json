@@ -15,7 +15,11 @@
     "lodash.uniq": "^4.5.0",
     "lodash.uniqwith": "^4.5.0",
     "lodash.without": "^4.4.0",
-    "mime": "~1.2.7"
+    "mime": "~1.2.7",
+    "node.bittrex.api": "^0.6.4",
+    "oauth": "^0.9.15",
+    "promise": "^7.1.1",
+    "socket.io": "^1.7.2"
   },
   "devDependencies": {
     "oauth": "^0.9.15",
