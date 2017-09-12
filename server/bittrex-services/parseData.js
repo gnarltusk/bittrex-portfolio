@@ -1,9 +1,9 @@
 var getUsdValue = function getUsdValue(value, btcPrice) {
-  return formatNumber(value * btcPrice);
+  return Math.round(value * btcPrice * 100)/100;
 }
 
 var formatNumber = function formatNumber(number) {
-  return Number(number).toFixed(8)
+  return Number(number).toFixed(8);
 }
 var getBalances = function getBalances(responseData) {
   var btcPrice = responseData[0];
