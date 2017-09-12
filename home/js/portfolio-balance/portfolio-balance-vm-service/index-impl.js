@@ -13,9 +13,11 @@ define([
       for(var i in balances) {
         var wallet = balances[i];
         btcValue.push(wallet.btcValue);
-        totalBTC += Number(wallet.btcValue);
-        totalUSD += Number(wallet.usdValue);
+        totalBTC += parseFloat(wallet.btcValue);
+        totalUSD += parseFloat(wallet.usdValue);
       }
+      totalBTC = Math.round(totalBTC*100000000)/100000000;
+      totalUSD = Math.round(totalUSD*100)/100;
       var btcValue = Object.values(balances).map(function(wallet){
         return wallet.btcValue;
       });
