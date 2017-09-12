@@ -1,7 +1,7 @@
-<div>
+<div ng-cloak>
   <div style="height:20px;display:flex;">
-    <div style="flex:1">${{PortfolioBalanceCtrl.balanceData.totalUSD}}</div>
-    <div style="flex:1">{{PortfolioBalanceCtrl.balanceData.totalBTC}} BTC</div>
+    <div style="flex:1;text-align:center;" ng-cloak>{{PortfolioBalanceCtrl.balanceData.totalUSD}}</div>
+    <div style="flex:1;text-align:center;" ng-cloak>{{PortfolioBalanceCtrl.balanceData.totalBTC}}</div>
   </div>
   <canvas id="balance-chart"></canvas>
 </div>

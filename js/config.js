@@ -4,6 +4,10 @@ require.config({
     'angular-ui-router': 'vendors/angular/angular-ui-router.min',
     'angular-couch-potato': 'vendors/angular/angular-couch-potato',
     'angular-css-injector': 'vendors/angular/angular-css-injector.min',
+    'angular-ui': '/node_modules/angular1-ui-bootstrap4/dist/ui-bootstrap-tpls',
+    'jquery': 'https://code.jquery.com/jquery-3.2.1.slim.min',
+    'popper': 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min',
+    'bootstrapjs': 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min',
     'redux': 'vendors/redux/redux.min',
     'lodash': 'vendors/lodash/lodash.min',
     'states': 'states',
@@ -20,10 +24,20 @@ require.config({
       exports: 'angular'
     },
     'app': {
-      deps: ['angular']
+      deps: ['angular', 'bootstrapjs']
     },
     'app-init': {
       deps: ['angular', 'app']
+    },
+    'jquery': {
+      exports: 'jquery'
+    },
+    'popper': {
+      exports: 'popper'
+    },
+    'bootstrapjs' : {
+      deps : ['jquery', 'popper'],
+      exports: 'bootstrapjs'
     }
   }
 });
