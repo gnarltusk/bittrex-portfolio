@@ -44,7 +44,7 @@ define([
       }
       storeData = data;
       dirty = !_.isEqual(initial,storeData);
-      this.cbService.next('StoreData', this.getStoreData());
+      cbService.next('StoreData', this.getStoreData());
     };
 
     /**

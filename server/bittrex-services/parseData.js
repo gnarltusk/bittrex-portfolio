@@ -10,14 +10,14 @@ var getBalances = function getBalances(responseData) {
   var balances = responseData[1];
   var openOrders = responseData[2];
   var marketHistory = responseData[3];
-  var marketChange = responseData[4];
-  var fiveMinutes = marketChange[0];
-  var hours = marketChange[1];
+  // var marketChange = responseData[4];
+  // var fiveMinutes = marketChange[0];
+  // var hours = marketChange[1];
   var currencies = {};
   balances.forEach(function(wallet, index) {
     var history = marketHistory[index];
-    var fiveMinutes = marketChange[index][0];
-    var hours = marketChange[index][1];
+    // var fiveMinutes = marketChange[index][0];
+    // var hours = marketChange[index][1];
     currencies[wallet.Currency] = {
       last: history.Last,
       balance: formatNumber(wallet.Balance)

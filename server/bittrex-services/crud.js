@@ -149,17 +149,19 @@ var init = function(res) {
       var wallets = data[1];
       wallets.forEach(function(wallet) {
         summary.push(getMarketSummary(wallet.Currency));    
-        history.push(getPriceHistory(wallet.Currency));    
+        // history.push(getPriceHistory(wallet.Currency));    
       });
       Promise.all(summary)
       .then(function(summaries){
-        responseData.push(summaries);        
-        Promise.all(history)
-        .then(function(histories){
-          responseData.push(histories);
-          var formatted = parser.getBalances(responseData);
-          res.send(formatted);     
-        });
+        responseData.push(summaries);
+        var formatted = parser.getBalances(responseData);
+        res.send(formatted);           
+        // Promise.all(history)
+        // .then(function(histories){
+        //   responseData.push(histories);
+        //   var formatted = parser.getBalances(responseData);
+        //   res.send(formatted);     
+        // });
       });
     })
   });

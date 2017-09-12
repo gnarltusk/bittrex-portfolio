@@ -1,20 +1,16 @@
 define([
   'app',
   'js/bittrex-crud-service/0.1/index.js',
-  'js/socket-service/0.1/index.js'
+  'home/js/portfolio-table/index.js',
+  'home/js/portfolio-balance/index.js',
+  'home/js/portfolio-vm-service/index.js'
 ],
 function(app) {
   app.registerController('HomeController', 
-  ['$scope', 'cssInjector', 'bittrexCrudService', 'socketService',
-    function($scope, cssInjector, bittrexCrudService, socketService) {
+  ['$scope', 'cssInjector', 'bittrexCrudService', 'portfolioVMService',
+    function($scope, cssInjector, bittrexCrudService, portfolioVMService) {
       cssInjector.add('home/index.css');
-      cssInjector.add('js/vendors/bootstrap/4.0.0/css/bootstrap.min.css');
-      socketService.on('marketsUpdated',function(data){
-        console.log(data);
-      })
-      bittrexCrudService.getBalances()
-      .then(function(data){
-        console.log(data);
-      });
+      cssInjector.add('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css');
+      portfolioVMService.init();
     }]);
 });
