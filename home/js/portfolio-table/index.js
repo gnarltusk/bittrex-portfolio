@@ -25,6 +25,7 @@ function(app, html, css) {
       var _this = this;
       var updateStoreData = function updateStoreData(storeData) {
         _this.tableData = portfolioTableVMService.formatTableData(storeData);
+        console.log(_this.tableData);
       };
       storeService.onUpdate(updateStoreData, $scope);
     }]);

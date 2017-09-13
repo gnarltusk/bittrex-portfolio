@@ -1,0 +1,12 @@
+<table class="table table-sm table-striped" ng-cloak>
+  <thead>
+    <tr>
+      <th ng-repeat="title in OrdersTableCtrl.tableData.titles track by $index">{{title.label}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="walletData in OrdersTableCtrl.tableData.data track by $index">
+      <td ng-repeat="walletKey in OrdersTableCtrl.tableData.titles track by $index">{{walletData[walletKey.name]}}</td>
+    </tr>
+  </tbody>
+</table>
