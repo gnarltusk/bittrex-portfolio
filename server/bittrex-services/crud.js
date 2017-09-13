@@ -1,6 +1,6 @@
 var fs = require('fs');
 var promise = require('promise');
-var bittrex = require('node.bittrex.api');
+var bittrex = require('node-bittrex-api');
 var parser = require('./parseData.js');
 
 var _loadApiKeys = function() {

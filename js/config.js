@@ -24,7 +24,7 @@ require.config({
       exports: 'angular'
     },
     'app': {
-      deps: ['angular', 'bootstrapjs']
+      deps: ['angular']
     },
     'app-init': {
       deps: ['angular', 'app']
@@ -33,15 +33,18 @@ require.config({
       exports: 'jquery'
     },
     'popper': {
-      exports: 'popper'
+      deps : ['jquery'],
+      exports: 'Popper'
     },
     'bootstrapjs' : {
-      deps : ['jquery', 'popper'],
-      exports: 'bootstrapjs'
+      deps : ['jquery','popper'],
     }
   }
 });
 
-require(['app-init'], function(appInit) {
-  appInit();
+require(['app-init', 'popper'], function(appInit, Popper) {
+  window.Popper = Popper;
+  require(['bootstrapjs'], function(){
+    appInit();
+  })
 });
