@@ -41,6 +41,7 @@ define(['app', 'states'], function(app, states) {
 					controller: state.controller,
 				});
       }
+      $state.go('home');      
     }]);
 
     var bootstrapApplication = (function() {

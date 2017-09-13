@@ -7,6 +7,7 @@ define([
   'home/js/portfolio-vm-service/index.js'
 ],
 function(app) {
+  console.log("LOADED?")
   app.registerController('HomeController', 
   ['$scope', 'cssInjector', 'bittrexCrudService', 'portfolioVMService',
     function($scope, cssInjector, bittrexCrudService, portfolioVMService) {
