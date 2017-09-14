@@ -1,6 +1,7 @@
 require.config({
   paths: {
     'angular': 'vendors/angular/angular.min',
+    'text': '/node_modules/text/text',
     'angular-ui-router': 'vendors/angular/angular-ui-router.min',
     'angular-couch-potato': 'vendors/angular/angular-couch-potato',
     'angular-css-injector': 'vendors/angular/angular-css-injector.min',
@@ -12,6 +13,7 @@ require.config({
     'lodash': 'vendors/lodash/lodash.min',
     'states': 'states',
     'app': 'app',
+    'compile-service': 'compile-service/0.1/index',
     'app-init': 'app-init',
     'text': 'vendors/requirejs-text/2.0.14/text',
     'socket-io': '/socket.io/socket.io',
@@ -42,7 +44,7 @@ require.config({
   }
 });
 
-require(['app-init', 'popper'], function(appInit, Popper) {
+require(['app-init', 'popper', 'text'], function(appInit, Popper) {
   window.Popper = Popper;
   require(['bootstrapjs'], function(){
     appInit();

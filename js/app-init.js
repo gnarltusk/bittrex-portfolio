@@ -8,10 +8,6 @@ define(['app', 'states'], function(app, states) {
         $sceDelegateProvider, $locationProvider) {
         stateProvider = $stateProvider;
         couchPotatoProvider = $couchPotatoProvider;
-        $locationProvider.html5Mode({
-          enabled: true,
-          requireBase: false
-        });
       }]);
 
   app.run(['$couchPotato', '$state', '$stateParams', '$rootScope',
@@ -23,7 +19,7 @@ define(['app', 'states'], function(app, states) {
         url: '/',
         templateUrl: 'home/index.html',
         resolve: {
-          deps: couchPotatoProvider
+          loadStateCtrl: couchPotatoProvider
         .resolveDependencies(['home/index.js'])
         },
         controller: 'HomeController as HomeCtrl'
@@ -35,13 +31,12 @@ define(['app', 'states'], function(app, states) {
           url: state.url,
 					templateUrl: state.path + '/index.html',
 					resolve:{
-						deps: couchPotatoProvider
+						loadStateCtrl: couchPotatoProvider
 						.resolveDependencies([state.path + '/index.js']),
 					},
 					controller: state.controller,
 				});
       }
-      $state.go('home');      
     }]);
 
     var bootstrapApplication = (function() {

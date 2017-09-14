@@ -11,6 +11,7 @@ function(app, html, css) {
     return {
       restrict: 'E',
       scope: {},
+      bindToController: true,
       controller: 'PortfolioTableController',
       controllerAs: 'PortfolioTableCtrl',
       template: function() {
@@ -20,12 +21,12 @@ function(app, html, css) {
   }]);
 
   app.registerController('PortfolioTableController', 
-  ['$scope', 'cssInjector', 'portfolioTableVMService', 'storeService',
-    function($scope, cssInjector, portfolioTableVMService, storeService) {
+  ['$scope', 'portfolioTableVMService', 'storeService',
+    function($scope, portfolioTableVMService, storeService) {
       var _this = this;
+      _this.tableData = {};
       var updateStoreData = function updateStoreData(storeData) {
         _this.tableData = portfolioTableVMService.formatTableData(storeData);
-        console.log(_this.tableData);
       };
       storeService.onUpdate(updateStoreData, $scope);
     }]);

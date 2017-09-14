@@ -20,8 +20,14 @@ define([
      * @param {Function} _next
      * @returns {Object}
      * */
-    var onUpdate = function onUpdate(_next) {
-      return cbService.register('StoreData', _next);
+    var onUpdate = function onUpdate(_next, $scope) {
+      var callback = cbService.register('StoreData', _next);
+      if (typeof $scope !== 'undefined') {
+        $scope.$on('$destroy', function $destroy() {
+          callback();
+        });
+      }
+      return callback;    
     };
 
     /**

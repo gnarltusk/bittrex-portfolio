@@ -29,6 +29,6 @@ function(app, html, css) {
         _this.balanceData = portfolioBalanceVMService.formatBalanceData(storeData);
         new Chart(ctx, _this.balanceData.chartData);
       };
-      storeService.onUpdate(updateStoreData);
+      storeService.onUpdate(updateStoreData, $scope);
     }]);
 });
