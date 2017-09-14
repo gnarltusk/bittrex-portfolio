@@ -3,11 +3,12 @@ define(['app', 'states'], function(app, states) {
     var stateProvider;
     var couchPotatoProvider;
     app.config(['$stateProvider', '$couchPotatoProvider',
-      '$sceDelegateProvider', '$locationProvider',
+      '$sceDelegateProvider', '$locationProvider', '$urlRouterProvider',
       function($stateProvider, $couchPotatoProvider,
-        $sceDelegateProvider, $locationProvider) {
+        $sceDelegateProvider, $locationProvider, $urlRouterProvider) {
         stateProvider = $stateProvider;
         couchPotatoProvider = $couchPotatoProvider;
+        $urlRouterProvider.otherwise('/');
       }]);
 
   app.run(['$couchPotato', '$state', '$stateParams', '$rootScope',

@@ -5,29 +5,42 @@ define([
 
   var ordersTableVMServiceImpl = function ordersTableVMServiceImpl() {
     var formatTableData = function formatTableData(storeData) {
-      var balances = _.cloneDeep(storeData.ordersStore.balances);
+      var orders = _.cloneDeep(storeData.ordersStore.orders);
       var tableData = []
+      // var titles = Object.keys(storeData.ordersStore.orders[0]);
+      // titles = titles.map(function(key){
+      //   return {
+      //     name: key,
+      //     label: key
+      //   }
+      // });
+
       var titles = [
         {
-          name: 'currency',
-          label: 'Currency'
+          name: 'exchange',
+          label: 'Exchange'
         },
         {
-          name: 'balance',
-          label: 'Balance'
+          name: 'quantity',
+          label: 'Quantity'
         },
         {
-          name: 'usdValue',
-          label: 'USD Value'
+          name: 'limit',
+          label: 'Limit'
+        },
+        {
+          name: 'goalChange',
+          label: '% to Goal'
         }
       ]
-      for(var coin in balances) {
-        var wallet = balances[coin];
-        wallet.currency = coin;
-        tableData.push(wallet);
-      }
+      // for(var coin in orders) {
+      //   var wallet = orders[coin];
+      //   wallet.currency = coin;
+      //   tableData.push(wallet);
+      // }
+      console.log(titles);
       return {
-        data: tableData,
+        data: orders,
         titles: titles
       }
     };

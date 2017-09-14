@@ -52,30 +52,15 @@ var init = function(res) {
     // });
   
   });
-  var getBTCValue = function getTicker() {
+  var getBTCValue = function getBTCValue() {
     return new Promise(function (resolve, reject){
       bittrex.getticker({market: 'USDT-BTC'}, function (ticker){
         resolve(ticker.result.Last);
       });
      });
   }
-  var getTicker = function getTicker(currency) {
+  var getMarketSummary = function getMarketSummary(market) {
     return new Promise(function (resolve, reject){
-      var market = 'BTC-' + currency;
-      if(currency === 'BTC') {
-        market = 'USDT-BTC'
-      }
-      bittrex.getticker({market: market}, function (ticker){
-        resolve(ticker.result)
-      });
-     });
-  };
-  var getMarketSummary = function getMarketSummary(currency) {
-    return new Promise(function (resolve, reject){
-      var market = 'BTC-' + currency;
-      if(currency === 'BTC') {
-        market = 'USDT-BTC'
-      }
       bittrex.getmarketsummary({market: market}, function (ticker){
         resolve(ticker.result[0])
       });
@@ -138,32 +123,55 @@ var init = function(res) {
     var promises = [
       getBTCValue(),
       getBalances(),
+    ];
+    var responseData = [];
+    Promise.all(promises)
+    .then(function(data){
+      responseData = data;
+      var wallets = data[1];
+      var summary = []
+      wallets.forEach(function(wallet) {
+        var currency = wallet.Currency;
+        var market = 'BTC-' + currency;
+        if(currency === 'BTC') {
+          market = 'USDT-BTC'
+        }
+        summary.push(getMarketSummary(market));    
+      });
+      Promise.all(summary)
+      .then(function(summaries){
+        responseData.push(summaries);
+        var formatted = parser.getBalances(responseData);
+        res.send(formatted);
+      });
+    });
+  });
+  app.post('/User/GetOrders', function (req, res) {
+    // getOpenOrders()
+    // .then(function(data){
+    //   var formatted = parser.getOrders(data);
+    //   res.send(data);
+    // });
+    var promises = [
+      getBTCValue(),
       getOpenOrders(),
     ];
     var responseData = [];
     Promise.all(promises)
     .then(function(data){
       responseData = data;
-      var history = [];
+      var orders = data[1];
       var summary = []
-      var wallets = data[1];
-      wallets.forEach(function(wallet) {
-        summary.push(getMarketSummary(wallet.Currency));    
-        // history.push(getPriceHistory(wallet.Currency));    
+      orders.forEach(function(wallet) {
+        summary.push(getMarketSummary(wallet.Exchange));    
       });
       Promise.all(summary)
       .then(function(summaries){
         responseData.push(summaries);
-        var formatted = parser.getBalances(responseData);
-        res.send(formatted);           
-        // Promise.all(history)
-        // .then(function(histories){
-        //   responseData.push(histories);
-        //   var formatted = parser.getBalances(responseData);
-        //   res.send(formatted);     
-        // });
+        var formatted = parser.getOrders(responseData);
+        res.send(formatted);
       });
-    })
+    });
   });
 };
 

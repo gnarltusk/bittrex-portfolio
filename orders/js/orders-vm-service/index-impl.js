@@ -7,8 +7,8 @@ define([
   function ordersVMServiceImpl(bittrexCrudService, ordersStoreActions) {
     var init = function init() {
       ordersStoreActions.initStore();
-      bittrexCrudService.getBalances()
-      .then(ordersStoreActions.updateBalances);
+      bittrexCrudService.getOrders()
+      .then(ordersStoreActions.updateOrders);
     }
     return {
       init: init

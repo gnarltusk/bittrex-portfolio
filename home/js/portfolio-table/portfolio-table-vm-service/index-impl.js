@@ -17,8 +17,8 @@ define([
           label: 'Balance'
         },
         {
-          name: 'usdValue',
-          label: 'USD Value'
+          name: 'btcValue',
+          label: 'BTC Value'
         }
       ]
       for(var coin in balances) {

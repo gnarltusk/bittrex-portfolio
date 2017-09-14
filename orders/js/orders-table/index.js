@@ -23,6 +23,10 @@ function(app, html, css) {
   ['$scope', 'cssInjector', 'ordersTableVMService', 'storeService',
     function($scope, cssInjector, ordersTableVMService, storeService) {
       var _this = this;
+      _this.tableData = {};
+      var updateStoreData = function updateStoreData(storeData) {
+        _this.tableData = ordersTableVMService.formatTableData(storeData);
+      };
       storeService.onUpdate(updateStoreData, $scope);
     }]);
 });

@@ -10,14 +10,14 @@ define([
       }
       storeService.updateStoreData(storeData);
     };
-    var updateBalances = function updateBalances(data) {
+    var updateOrders = function updateOrders(data) {
       var storeData = storeService.getStoreData();
-      storeData.ordersStore.balances = data;
+      storeData.ordersStore.orders = data;
       storeService.updateStoreData(storeData);
     };
     return {
       initStore: initStore,
-      updateBalances: updateBalances
+      updateOrders: updateOrders
     };
   };
 
