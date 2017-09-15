@@ -20,10 +20,10 @@ define([
     };
     
     var getBalances = function getBalances(params) {
-      return _get('/User/GetBalances', params)
+      return _get('/Bittrex/GetBalances', params)
     };
     var getOrders = function getOrders(params) {
-      return _get('/User/GetOrders', params)
+      return _get('/Bittrex/GetOrders', params)
     };
 
     return {

@@ -1,7 +1,6 @@
 var serverUrl = process.argv[2] || 'localhost';
+var api = require('./server/api.js');
 var startup = require('./server/startup.js');
-var bittrexCrud = require('./server/bittrex-services/crud.js');
 
- 
 startup.initialize(serverUrl)
-.then(bittrexCrud.init);
+.then(api.init);
