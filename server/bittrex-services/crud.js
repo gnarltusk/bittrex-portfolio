@@ -75,6 +75,20 @@ var getPriceHistory = function getPriceHistory(currency) {
   ];
   return Promise.all(promises);
 }
+var getOrderHistory = function getOrderHistory(_marketPair) {
+  var marketPair = {};
+  if(typeof _marketPair !== 'undefined') {
+    marketPair = {
+      market: _marketPair
+    }
+  }
+
+  return new Promise(function (resolve, reject){
+    bittrex.getorderhistory(marketPair, function(data){
+      resolve(data.result);
+    });
+  });
+}
 
 var getBalances = function getBalances() {
   return new Promise(function (resolve, reject){
@@ -93,6 +107,7 @@ module.exports = {
   getPriceHistory: getPriceHistory,
   getLatestTick: getLatestTick,
   getOpenOrders: getOpenOrders,
+  getOrderHistory: getOrderHistory,
   getMarketSummary: getMarketSummary,
   getBTCValue: getBTCValue
 };

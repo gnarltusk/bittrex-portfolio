@@ -19,6 +19,14 @@ define([
         {
           name: 'btcValue',
           label: 'BTC Value'
+        },
+        {
+          name: 'usdValue',
+          label: 'USD Value'
+        },
+        {
+          name: 'averageProfit',
+          label: '+/- %'
         }
       ]
       for(var coin in balances) {

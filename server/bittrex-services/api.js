@@ -6,6 +6,7 @@ var getBalances = function getBalances(req, res) {
   var promises = [
     bittrexCrud.getBTCValue(),
     bittrexCrud.getBalances(),
+    bittrexCrud.getOrderHistory(),
   ];
   var responseData = [];
   Promise.all(promises)
@@ -52,9 +53,22 @@ var getOrders = function getOrders (req, res) {
     });
   });
 };
-
+var getOrderHistory = function getOrderHistory(req, res) {
+  var market = 'BTC-OMG';
+  var promises = [    
+    bittrexCrud.getOrderHistory(market),
+    bittrexCrud.getMarketSummary(market)
+  ];
+  
+  Promise.all(promises)
+  .then(function(data){
+    var formatted = bittrexFormatter.getOrderHistory(data);
+    res.send(formatted);
+  });
+}
 module.exports = {
   getBalances: getBalances,
   getOrders: getOrders,
+  getOrderHistory: getOrderHistory,
   loadApiKeys: bittrexCrud._loadApiKeys
 };
