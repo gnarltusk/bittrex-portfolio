@@ -13,7 +13,13 @@ var priceFull = function priceFull(req, res) {
     res.send(prices)
   })
 };
-
+var getIndicators = function getIndicators(req, res) {
+  cc.histoHour('LTC', 'BTC', { exchange: 'BitTrex', limit: 65} )
+  .then(function(prices){
+    res.send(prices)
+  })
+};
 module.exports = {
+  getIndicators: getIndicators,
   priceFull: priceFull
 };

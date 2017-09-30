@@ -16,7 +16,9 @@
     "oauth": "^0.9.15",
     "promise": "^7.1.1",
     "qs": "^6.5.1",
+    "smidgen": "^1.1.0",
     "socket.io": "^1.7.2",
-    "text": "github:requirejs/text"
+    "text": "github:requirejs/text",
+    "tulind": "^0.8.7"
   }
 }

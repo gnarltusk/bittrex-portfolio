@@ -48,7 +48,7 @@ var getLatestTick = function getLatestTick(market, interval) {
   });
 };
 
-var _getCandles = function _getCandles(market, interval, _limit) {
+var getCandles = function getCandles(market, interval, _limit) {
   var limit = _limit || null;
   return new Promise(function (resolve, reject){
     bittrex.getcandles({
@@ -70,8 +70,8 @@ var getPriceHistory = function getPriceHistory(currency) {
     market = 'USDT-BTC';
   }
   var promises = [
-    _getCandles(market, 'fiveMin', 6),
-    _getCandles(market, 'hour', 65),
+    getCandles(market, 'fiveMin', 6),
+    getCandles(market, 'hour', 65),
   ];
   return Promise.all(promises);
 }
@@ -104,6 +104,7 @@ var getBalances = function getBalances() {
 module.exports = {
   _loadApiKeys: _loadApiKeys,
   getBalances: getBalances,
+  getCandles: getCandles,
   getPriceHistory: getPriceHistory,
   getLatestTick: getLatestTick,
   getOpenOrders: getOpenOrders,

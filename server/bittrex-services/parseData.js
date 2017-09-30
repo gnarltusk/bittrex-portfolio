@@ -6,8 +6,12 @@ var formatNumber = function formatNumber(number) {
   return Number(number).toFixed(8);
 }
 var getChange = function getChange(currentValue, limit) {
-  var change = (currentValue - limit)/limit;
-  return Math.round(change*10000)/100;
+  var roundedChange = 0;
+  if (limit > 0) {
+    var change = (currentValue - limit)/limit;
+    roundedChange = Math.round(change*10000)/100;
+  }
+  return roundedChange;
 }
 var getBalances = function getBalances(responseData) {
   var btcPrice = responseData[0];
@@ -20,9 +24,13 @@ var getBalances = function getBalances(responseData) {
     var averageOrders = orderHistory[history.MarketName];
     var commission = 0;
     var averageBuy = 0;
+    var lastBuy = 0;
     if (typeof averageOrders !== 'undefined') {
       commission = averageOrders.commission;
       averageBuy = averageOrders.averageBuy;
+      if(typeof averageOrders.buy[0] !== 'undefined') {
+        lastBuy = averageOrders.buy[0].pricePerUnit;
+      }
     }
     currencies[wallet.Currency] = {
       last: history.Last,
@@ -145,9 +153,15 @@ var getOrderHistory = function getOrderHistory(responseData) {
   // }
   return orders;
 };
-
+var getIndicators = function getIndicators(data) {
+  var indicators = {};
+  indicators.rsi = [],
+  console.log(data);
+  return indicators;
+}
 module.exports = {
   getBalances: getBalances,
   getOrders: getOrders,
-  getOrderHistory: getOrderHistory
+  getOrderHistory: getOrderHistory,
+  getIndicators: getIndicators
 };
