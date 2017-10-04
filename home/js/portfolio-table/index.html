@@ -1,12 +1,12 @@
 <table class="table table-sm table-striped" ng-cloak>
   <thead>
     <tr>
-      <th ng-repeat="title in PortfolioTableCtrl.tableData.titles track by $index">{{title.label}}</th>
+      <th ng-repeat="title in PortfolioTableCtrl.portfolioTableVM.titles track by $index">{{title.label}}</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="walletData in PortfolioTableCtrl.tableData.data track by $index">
-      <td ng-repeat="walletKey in PortfolioTableCtrl.tableData.titles track by $index">{{walletData[walletKey.name]}}</td>
+    <tr ng-repeat="walletData in PortfolioTableCtrl.portfolioTableVM.tableData track by $index">
+      <td ng-repeat="walletKey in PortfolioTableCtrl.portfolioTableVM.titles track by $index">{{walletData[walletKey.name]}}</td>
     </tr>
   </tbody>
 </table>

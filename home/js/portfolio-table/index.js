@@ -24,10 +24,10 @@ function(app, html, css) {
   ['$scope', 'portfolioTableVMService', 'storeService',
     function($scope, portfolioTableVMService, storeService) {
       var _this = this;
-      _this.tableData = {};
-      var updateStoreData = function updateStoreData(storeData) {
-        _this.tableData = portfolioTableVMService.formatTableData(storeData);
-      };
-      storeService.onUpdate(updateStoreData, $scope);
+      this.portfolioTableVM = portfolioTableVMService.getInstance('default');
+      this.portfolioTableVM.init();
+      $scope.$on('$destroy', function(){
+        _this.portfolioTableVM.storeCallback();
+      })
     }]);
 });

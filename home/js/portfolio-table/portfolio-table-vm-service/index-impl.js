@@ -2,48 +2,67 @@ define([
   'lodash',
 ], function(_) {
   'use strict';
-
-  var portfolioTableVMServiceImpl = function portfolioTableVMServiceImpl() {
-    var formatTableData = function formatTableData(storeData) {
-      var balances = _.cloneDeep(storeData.portfolioStore.balances);
-      var tableData = []
-      var titles = [
-        {
-          name: 'currency',
-          label: 'Currency'
-        },
-        {
-          name: 'balance',
-          label: 'Balance'
-        },
-        {
-          name: 'btcValue',
-          label: 'BTC Value'
-        },
-        {
-          name: 'usdValue',
-          label: 'USD Value'
-        },
-        {
-          name: 'averageProfit',
-          label: '+/- %'
-        }
-      ]
-      for(var coin in balances) {
-        var wallet = balances[coin];
-        wallet.currency = coin;
-        tableData.push(wallet);
+  var storeService;
+  var portfolioTableVMService = function portfolioTableVMService(id) {
+    this.id = id;
+    this.storeCallback = null;
+    this.titles = [
+      {
+        name: 'currency',
+        label: 'Currency'
+      },
+      {
+        name: 'balance',
+        label: 'Balance'
+      },
+      {
+        name: 'btcValue',
+        label: 'BTC Value'
+      },
+      {
+        name: 'usdValue',
+        label: 'USD Value'
+      },
+      {
+        name: 'averageProfit',
+        label: '+/- %'
       }
-      return {
-        data: tableData,
-        titles: titles
-      }
-    };
-  
-    return {
-      formatTableData: formatTableData
-    }
+    ];
+    this.tableData = [];
   };
 
-  return portfolioTableVMServiceImpl;
+  portfolioTableVMService.prototype.init = function init() {
+    var _this = this;
+    this.storeCallback = storeService.onUpdate(function(data){
+      _this.onUpdate(data);
+    })
+  };
+  portfolioTableVMService.prototype.onUpdate = function onUpdate(storeData) {
+    this.tableData = [];
+    var balances = _.cloneDeep(storeData.portfolioStore[this.id].balances);
+    for(var coin in balances) {
+      var wallet = balances[coin];
+      wallet.currency = coin;
+      this.tableData.push(wallet);
+    }
+  };
+  return function Factory(_storeService) {
+    var instances = {};
+    storeService = _storeService;
+    
+    return {
+      getInstance: function getInstance(_id) {
+        if (typeof instances[_id] !== 'undefined') {
+          return instances[_id];
+        } else if (typeof _id !== 'undefined') {
+          instances[_id] = new portfolioTableVMService(_id);
+          return instances[_id];
+        }
+      },
+      removeInstance: function removeInstance(_id) {
+        instances[_id].storeCallback();
+        delete instances[_id];
+      }
+    }
+  };
 });

@@ -140,10 +140,20 @@ var getIndicators = function getIndicators(req, res) {
   // });
   
 };
+
+var getMarket = function getMarket(req, res) {
+  var market = req.body.market;
+  bittrexCrud.getMarketSummary(market)
+  .then(function(data){
+    res.send(data);
+  });
+};
+
 module.exports = {
   getBalances: getBalances,
   getOrders: getOrders,
   getOrderHistory: getOrderHistory,
   getIndicators: getIndicators,
-  loadApiKeys: bittrexCrud._loadApiKeys
+  loadApiKeys: bittrexCrud._loadApiKeys,
+  getMarket: getMarket
 };

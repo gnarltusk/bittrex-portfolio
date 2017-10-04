@@ -1,0 +1,58 @@
+<portfolio-nav></portfolio-nav>
+<div style="margin:20px;">
+    <div class="card">
+      <div class="card-body">
+        <button ng-click="SellCalculatorCtrl.sellCalculatorVM.loadCalculator()" class="btn btn-primary">reload</button>
+        <p>
+          <strong>BTC Price</strong>: {{SellCalculatorCtrl.sellCalculatorVM.btcValue}}
+        </p>
+        <p>
+          <strong>Captial</strong>: 
+          <input type="number" min="0"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCapitalInput()"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.capital"></input>
+        </p>
+        <p>
+          <strong>Max to risk</strong>: <input type="number" 
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateRiskInput()"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.risk"></input>
+        </p>
+        <p>
+          <strong>Allocation</strong>: <input type="number" 
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateAllocationInput()"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.allocation"></input>            
+        </p>
+        <p>
+          <strong>Market</strong>: <input type="text"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateMarketInput()"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.market"></input>
+          <strong>Market Value</strong> {{SellCalculatorCtrl.sellCalculatorVM.marketPrice}}
+        </p>
+        <p>
+          <strong>Entry</strong>: <input type="number" 
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateEntrylInput()"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.entry"></input>  
+        </p>
+        <p>
+          <strong>Target</strong>: <input type="number" 
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateTargetInput()"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.target"></input>
+        </p>
+        <p>
+          <strong>Target %</strong>: <input type="number"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateTargetPctInput()"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.targetPct" ></input>
+        </p>
+        <p>
+          <strong>Stop</strong>: <input type="number" 
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateStopInput()"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.stop"></input>
+        </p>
+        <p>
+          <strong>Stop %</strong>: <input type="number" 
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateStopPctInput()"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.stopPct"></input>
+        </p>
+      </div>
+    </div>
+  </div>

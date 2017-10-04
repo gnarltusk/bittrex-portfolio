@@ -17,6 +17,7 @@ var init = function(res) {
   app.post('/CC/PriceFull', ccApi.priceFull);
   app.post('/CC/GetIndicators', ccApi.getIndicators);
   app.post('/Bittrex/GetIndicators', bittrexApi.getIndicators);
+  app.post('/Bittrex/GetMarket', bittrexApi.getMarket);
   app.post('/Iota/GenerateSeed', iotaApi.generateSeed);
   app.post('/Iota/GetBalance', iotaApi.getBalance);
 };

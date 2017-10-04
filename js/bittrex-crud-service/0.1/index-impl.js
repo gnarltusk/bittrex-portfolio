@@ -25,10 +25,16 @@ define([
     var getOrders = function getOrders(params) {
       return _get('/Bittrex/GetOrders', params)
     };
-
+    var getMarket = function getMarket(market) {
+      var params = {
+        market: market
+      }
+      return _get('/Bittrex/GetMarket', params)
+    };
     return {
       getBalances: getBalances,
-      getOrders: getOrders
+      getOrders: getOrders,
+      getMarket: getMarket
     };
   };
 

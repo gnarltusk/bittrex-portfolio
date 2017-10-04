@@ -15,6 +15,11 @@ define([], function() {
       url: '/currency/{currency}',
       controller: 'CurrencyController as CurrencyCtrl'
     },
+    'sell-calculator': {
+      path: '/sell-calculator',
+      url: '/sell-calculator',
+      controller: 'SellCalculatorController as SellCalculatorCtrl'
+    },
     news: {
       path: '/news',
       url: '/news',

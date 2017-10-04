@@ -10,6 +10,7 @@ function(app) {
   ['$scope', 'cssInjector', 'bittrexCrudService', 'ordersVMService',
     function($scope, cssInjector, bittrexCrudService, ordersVMService) {
       cssInjector.add('orders/index.css');
-      ordersVMService.init();
+      this.ordersVM = ordersVMService.getInstance('default');
+      this.ordersVM.init();
     }]);
 });

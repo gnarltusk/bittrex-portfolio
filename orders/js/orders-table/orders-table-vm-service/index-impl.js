@@ -2,53 +2,59 @@ define([
   'lodash',
 ], function(_) {
   'use strict';
-
-  var ordersTableVMServiceImpl = function ordersTableVMServiceImpl() {
-    var formatTableData = function formatTableData(storeData) {
-      var orders = _.cloneDeep(storeData.ordersStore.orders);
-      var tableData = []
-      // var titles = Object.keys(storeData.ordersStore.orders[0]);
-      // titles = titles.map(function(key){
-      //   return {
-      //     name: key,
-      //     label: key
-      //   }
-      // });
-
-      var titles = [
-        {
-          name: 'exchange',
-          label: 'Exchange'
-        },
-        {
-          name: 'quantity',
-          label: 'Quantity'
-        },
-        {
-          name: 'limit',
-          label: 'Limit'
-        },
-        {
-          name: 'goalChange',
-          label: '% to Goal'
-        }
-      ]
-      // for(var coin in orders) {
-      //   var wallet = orders[coin];
-      //   wallet.currency = coin;
-      //   tableData.push(wallet);
-      // }
-      console.log(titles);
-      return {
-        data: orders,
-        titles: titles
+  var storeService;
+  var ordersTableVMService = function ordersTableVMService(id) {
+    this.id = id;
+    this.storeCallback = null;
+    this.titles = [
+      {
+        name: 'exchange',
+        label: 'Exchange'
+      },
+      {
+        name: 'quantity',
+        label: 'Quantity'
+      },
+      {
+        name: 'limit',
+        label: 'Limit'
+      },
+      {
+        name: 'goalChange',
+        label: '% to Goal'
       }
-    };
-  
-    return {
-      formatTableData: formatTableData
-    }
+    ];
+    this.tableData = [];
   };
 
-  return ordersTableVMServiceImpl;
+  ordersTableVMService.prototype.init = function init(ctx) {
+    var _this = this;
+    this.storeCallback = storeService.onUpdate(function(data){
+      _this.onUpdate(data);
+    }.bind(this))
+  };
+
+  ordersTableVMService.prototype.onUpdate = function onUpdate(storeData) {    
+    this.tableData = storeData.ordersStore.orders;
+  };
+
+  return function Factory(_storeService) {
+    var instances = {};
+    storeService = _storeService;
+    
+    return {
+      getInstance: function getInstance(_id) {
+        if (typeof instances[_id] !== 'undefined') {
+          return instances[_id];
+        } else if (typeof _id !== 'undefined') {
+          instances[_id] = new ordersTableVMService(_id);
+          return instances[_id];
+        }
+      },
+      removeInstance: function removeInstance(_id) {
+        instances[_id].storeCallback();
+        delete instances[_id];
+      }
+    }
+  };
 });

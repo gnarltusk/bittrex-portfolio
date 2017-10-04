@@ -37,7 +37,8 @@ var getBalances = function getBalances(responseData) {
       balance: formatNumber(wallet.Balance),
       commission: commission,
       averageBuy: formatNumber(averageBuy),
-      averageProfit: getChange(history.Last, averageBuy)
+      averageProfit: getChange(history.Last, averageBuy),
+      lastBuy: getChange(history.Last, lastBuy)
     }
     if(wallet.Currency === 'BTC') {
       currencies[wallet.Currency].btcValue = formatNumber(wallet.Balance)

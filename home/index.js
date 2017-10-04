@@ -11,6 +11,7 @@ function(app) {
   ['$scope', 'cssInjector', 'bittrexCrudService', 'portfolioVMService',
     function($scope, cssInjector, bittrexCrudService, portfolioVMService) {
       cssInjector.add('home/index.css');
-      portfolioVMService.init();
+      this.portfolioVM = portfolioVMService.getInstance('default');
+      this.portfolioVM.init();
     }]);
 });
