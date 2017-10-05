@@ -31,33 +31,16 @@ define([
       storeData.sellCalculatorStore[id].btcValue = data;    
       storeService.updateStoreData(storeData);
     };
-    var updateMarket = function updateMarket(id, market) {
-      var storeData = storeService.getStoreData();
-      storeData.sellCalculatorStore[id].market = market;    
-      storeService.updateStoreData(storeData);
+    var updateCalculator = function updateMarket(id, data) {
+        var storeData = storeService.getStoreData();
+        storeData.sellCalculatorStore[id] = data
+        storeService.updateStoreData(storeData);
     };
-    var updateCapital = function updateCapital(id, capital) {
-      var storeData = storeService.getStoreData();
-      storeData.sellCalculatorStore[id].capital = capital;    
-      storeService.updateStoreData(storeData);
-    }
-    var updateRisk = function updateRisk(id, risk) {
-      var storeData = storeService.getStoreData();
-      storeData.sellCalculatorStore[id].risk = risk;    
-      storeService.updateStoreData(storeData);
-    }
-    var updateAllocation = function updateAllocation(id, allocation) {
-      var storeData = storeService.getStoreData();
-      storeData.sellCalculatorStore[id].allocation = allocation;    
-      storeService.updateStoreData(storeData);
-    }
+
     return {
       initStore: initStore,
       loadCalculator: loadCalculator,
-      updateMarket: updateMarket,
-      updateCapital: updateCapital,
-      updateRisk: updateRisk,
-      updateAllocation: updateAllocation
+      updateCalculator: updateCalculator
     };
   };
 

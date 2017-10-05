@@ -43,44 +43,67 @@ define([
     this.stop = calculatorData.stop;
     this.stopPct = calculatorData.stopPct;
   };
+  sellCalculatorVMService.prototype.updateCalculator = function updateCalculator() {
+    var calculator = {
+      btcValue: this.btcValue,
+      capital: this.capital,
+      risk: this.risk,
+      allocation: this.allocation,
+      market: this.market,
+      marketPrice: this.marketPrice,
+      entry: this.entry,
+      target: this.target,
+      targetPct: this.targetPct,
+      stop: this.stop,
+      stopPct: this.stopPct,
+      walletBTC: this.walletBTC
+    }
+    sellCalculatorStoreActions.updateCalculator(this.id, calculator);    
+  }
   // sellCalculatorVMService.prototype.updateCapitalInput = function updateCapitalInput(text) {
   //   var _this = this;
   //   sellCalculatorStoreActions.updateCapital(_this.id, _this.capital);    
   // };
   sellCalculatorVMService.prototype.updateCapitalInput = function updateCapitalInput() {
     var _this = this;
-    sellCalculatorStoreActions.updateCapital(_this.id, _this.capital);    
+    _this.updateCalculator();    
   };
   sellCalculatorVMService.prototype.updateRiskInput = function updateRiskInput() {
     var _this = this;
+    _this.updateCalculator();    
   };
   sellCalculatorVMService.prototype.updateAllocationInput = function updateAllocationInput() {
     var _this = this;
+    _this.updateCalculator();    
   };
   sellCalculatorVMService.prototype.updateMarketInput = function updateMarketInput() {
     var _this = this;
+    _this.updateCalculator();    
   };
   sellCalculatorVMService.prototype.updateEntryInput = function updateEntryInput() {
     var _this = this;
-    _this.calculateStuff();
+    _this.calculateOtherStuff();
+    _this.updateCalculator();
   };
   sellCalculatorVMService.prototype.updateTargetInput = function updateTargetInput() {
     var _this = this;
     _this.calculateStuff();
-    
+    _this.updateCalculator();
   };
   sellCalculatorVMService.prototype.updateTargetPctInput = function updateTargetPctInput() {
     var _this = this;
     _this.calculateOtherStuff();
+    _this.updateCalculator();    
   };
   sellCalculatorVMService.prototype.updateStopInput = function updateStopInput() {
     var _this = this;
     _this.calculateStuff();
-    
+    _this.updateCalculator();    
   };
   sellCalculatorVMService.prototype.updateStopPctInput = function updateRiskInput() {
     var _this = this;
     _this.calculateOtherStuff();
+    _this.updateCalculator();    
   };
   sellCalculatorVMService.prototype.calculateStuff = function calculateStuff() {
     var _this = this;
