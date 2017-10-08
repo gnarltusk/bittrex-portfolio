@@ -4,13 +4,15 @@ var ccFormatter = require('./parseData.js');
 var qs = require('qs');
 
 var priceFull = function priceFull(req, res) {
-  var currency = JSON.parse(req.body.currency);
-  // var conversion = req.body.conversion;
-  // console.log(typeof JSON.parse(req.body.currency));
-
+  var currency = req.body.currency;
   cc.priceFull(currency, ['USD','BTC'])
   .then(function(prices){
     res.send(prices)
+  }, function(data){
+    res.send({
+      result: 'error',
+      message: data
+    }); 
   })
 };
 var getIndicators = function getIndicators(req, res) {

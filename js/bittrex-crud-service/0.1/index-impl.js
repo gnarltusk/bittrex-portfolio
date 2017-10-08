@@ -27,9 +27,9 @@ define([
     };
     var getMarket = function getMarket(market) {
       var params = {
-        market: market
+        currency: [market]
       }
-      return _get('/Bittrex/GetMarket', params)
+      return _get('/CC/PriceFull', params)
     };
     return {
       getBalances: getBalances,

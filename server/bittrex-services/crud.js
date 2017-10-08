@@ -24,7 +24,13 @@ var getBTCValue = function getBTCValue() {
 var getMarketSummary = function getMarketSummary(market) {
   return new Promise(function (resolve, reject){
       bittrex.getmarketsummary({market: market}, function (ticker){
-        resolve(ticker.result[0])
+        if(ticker) {
+          resolve(ticker.result[0]);
+        } else {
+          resolve({
+            result: 'error'
+          });
+        }
       });
     });
 };

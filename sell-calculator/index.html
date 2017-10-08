@@ -9,44 +9,49 @@
         <p>
           <strong>Captial</strong>: 
           <input type="number" min="0"
-          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCapitalInput()"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCalculator('value')"
           ng-model="SellCalculatorCtrl.sellCalculatorVM.capital"></input>
+          <strong>Wallet</strong> {{SellCalculatorCtrl.sellCalculatorVM.wallet}}
+          <button type="button" class="btn btn-default btn-sm"
+          ng-click="SellCalculatorCtrl.sellCalculatorVM.useWalletValue()">Use</button>
         </p>
         <p>
-          <strong>Max to risk</strong>: <input type="number" 
-          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateRiskInput()"
+          <strong>Risk</strong>: <input type="number" 
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCalculator('pct')"
           ng-model="SellCalculatorCtrl.sellCalculatorVM.risk"></input>
-        </p>
-        <p>
-          <strong>Allocation</strong>: <input type="number" 
-          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateAllocationInput()"
-          ng-model="SellCalculatorCtrl.sellCalculatorVM.allocation"></input>            
+          <strong>Risk %</strong>: <input type="number"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCalculator('value')"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.riskPct" ></input>
         </p>
         <p>
           <strong>Market</strong>: <input type="text"
-          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateMarketInput()"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCalculator()"
           ng-model="SellCalculatorCtrl.sellCalculatorVM.market"></input>
+          <button class="btn btn-default" ng-click="SellCalculatorCtrl.sellCalculatorVM.searchMarket()">Search</button>
           <strong>Market Value</strong> {{SellCalculatorCtrl.sellCalculatorVM.marketPrice}}
+          <button type="button" class="btn btn-default btn-sm"
+          ng-click="SellCalculatorCtrl.sellCalculatorVM.useMarketValue()">Use</button>
         </p>
         <p>
           <strong>Entry</strong>: <input type="number" 
-          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateEntryInput()"
-          ng-model="SellCalculatorCtrl.sellCalculatorVM.entry"></input>  
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCalculator('value')"
+          ng-model="SellCalculatorCtrl.sellCalculatorVM.entry"></input>
+          <strong>Units</strong>: {{SellCalculatorCtrl.sellCalculatorVM.units}}
         </p>
         <p>
           <strong>Target</strong>: <input type="number" 
-          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateTargetInput()"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCalculator('pct')"
           ng-model="SellCalculatorCtrl.sellCalculatorVM.target"></input>
           <strong>Target %</strong>: <input type="number"
-          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateTargetPctInput()"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCalculator('value')"
           ng-model="SellCalculatorCtrl.sellCalculatorVM.targetPct" ></input>
         </p>
         <p>
           <strong>Stop</strong>: <input type="number" 
-          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateStopInput()"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCalculator('pct')"
           ng-model="SellCalculatorCtrl.sellCalculatorVM.stop"></input>
           <strong>Stop %</strong>: <input type="number" 
-          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateStopPctInput()"
+          ng-change="SellCalculatorCtrl.sellCalculatorVM.updateCalculator('value')"
           ng-model="SellCalculatorCtrl.sellCalculatorVM.stopPct"></input>
         </p>
       </div>

@@ -12,10 +12,12 @@ define([
         storeData.sellCalculatorStore[id] = {
           btcValue: 0,
           capital: 0,
-          risk: 2,
-          allocation: 1,
-          market: 'BTC-ARK',
-          marketPrice: 0.00062993,
+          wallet: 0,
+          risk: 0,
+          riskPct: 2,
+          market: '',
+          marketPrice: 0,
+          units: 0,
           entry: 0,
           target: 0,
           targetPct: 0,
@@ -26,20 +28,14 @@ define([
       }
       storeService.updateStoreData(storeData);
     };
-    var loadCalculator = function loadCalculator(id, data) {
-      var storeData = storeService.getStoreData();
-      storeData.sellCalculatorStore[id].btcValue = data;    
-      storeService.updateStoreData(storeData);
-    };
     var updateCalculator = function updateMarket(id, data) {
         var storeData = storeService.getStoreData();
         storeData.sellCalculatorStore[id] = data
         storeService.updateStoreData(storeData);
     };
-
+    
     return {
       initStore: initStore,
-      loadCalculator: loadCalculator,
       updateCalculator: updateCalculator
     };
   };
